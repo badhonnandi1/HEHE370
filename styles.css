@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+
+
+header {
+    background: #004080;
+    color: #fff;
+    padding: 20px 0;
+}
+
+header h1 {
+    text-align: center;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+    background: #e0f0ff;
+    padding: 270px 0;
+    text-align: center;
+}
+
+.hero h2 {
+    /* margin-bottom: 20px; */
+    font-size: 2.5em;
+}
+
+.hero p {
+    margin-bottom: 30px;
+    font-size: 1.2em;
+}
+
+
+footer {
+    background: #004080;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: auto; 
+}
+
+
+.dashboard {
+    display:block ;
+    padding: 50px 0;
+    margin-bottom: 340px;
+}
+
+.dashboard h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #004080;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    background: #fff;
+    width: 250px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
