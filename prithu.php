@@ -32,7 +32,7 @@ include "database.php";
             <?php echo "<p>Prithu</p>"?>
         </h1>
     </div>
-    
+    <!-- git pull origin main -->
 </body>
 <script src='prithu.js'></script>
 </html>
