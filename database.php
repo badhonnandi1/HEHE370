@@ -9,7 +9,9 @@ $conn = new mysqli($servername, $name, $password, 'OAA_STUDENT_MANAGEMENT_SYSTEM
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-// echo "Connected successfully";
+else{
+    echo "ConnectedSuccessfully";
+}
 
 ?>
 
