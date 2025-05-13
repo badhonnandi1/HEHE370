@@ -21,8 +21,10 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
             <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="#">Announcements</a></li>
-                    <li><a href="resources.php">Resources</a></li>
+                    <li><a href="announcement_show.php">Announcements</a></li>
+                    <li><a href="advisors.php">Advisors</a></li>
+
+                    <li><a href="view_resource.php">Resources</a></li>
                     <?php if ($role === 'advisor'): ?>
                         <li><a href="admin_dashboard.php">Advisor Dashboard</a></li>
                     <?php elseif ($role === 'student'): ?>

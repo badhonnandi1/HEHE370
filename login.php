@@ -10,10 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     $result = mysqli_query($conn, "SELECT * FROM USER WHERE Email = '$email' AND Password = '$password'");
-    echo mysqli_num_rows($result) === 1;
+    
+    // echo mysqli_num_rows($result) === 1;
 
     if (mysqli_num_rows($result) === 1) {
-        $user = mysqli_fetch_assoc($result);
+        $user = mysqli_fetch_assoc($result); // associative array niye astese eita key: value pair dictionary er moto
         $userId = $user['ID'];
 
         $role = '';
@@ -29,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['role'] = $role;
         $_SESSION['name'] = $user['Name'];
 
-
         header("Location: index.php");
         exit();    
     } else {
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="logre.css">
+<link rel="stylesheet" href="CSS/logre.css">
 <title>Login</title>
 </head>
 <body>

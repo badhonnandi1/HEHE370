@@ -6,33 +6,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name     = $_POST['name'];
     $email    = $_POST['email'];
     $password = $_POST['password'];
-    $role     = $_POST['role'];
+    $fac_key  = $_POST['fac_key'];
 
     $profilePic = $_FILES['profile_pic']['tmp_name'];
     $profilePicContent = addslashes(file_get_contents($profilePic));
 
-    $check = mysqli_query($conn, "SELECT id FROM USER WHERE email = '$email'");
-    if (mysqli_num_rows($check) > 0) {
-        $error = "Email already exists. Please use a different email.";
+    $fac_check = mysqli_query($conn, "SELECT `key` FROM Faculty WHERE `key` = '$fac_key'");
+    if (mysqli_num_rows($fac_check) === 0) {
+        $error = "Invalid faculty key. Please enter a valid key.";
     } else {
-        $hashedPassword = $password;
-        mysqli_query($conn, "INSERT INTO USER (name, email, password, profile_pic) 
-                             VALUES ('$name', '$email', '$hashedPassword', '$profilePicContent')");
+        $check = mysqli_query($conn, "SELECT id FROM USER WHERE email = '$email'");
+        if (mysqli_num_rows($check) > 0) {
+            $error = "Email already exists. Please use a different email.";
+        } else {
+            mysqli_query($conn, "INSERT INTO USER (name, email, password, profile_pic) VALUES ('$name', '$email', '$password', '$profilePicContent')");
 
-        $userId = mysqli_insert_id($conn);
+            $userId = mysqli_insert_id($conn);
 
-        if ($role === "Student") {
-            mysqli_query($conn, "INSERT INTO Student (id) VALUES ($userId)");
-        } elseif ($role === "Mentor") {
-            mysqli_query($conn, "INSERT INTO Mentor (id) VALUES ($userId)");
-        } elseif ($role === "Advisor") {
             mysqli_query($conn, "INSERT INTO Advisor (id) VALUES ($userId)");
-        }
 
-        header("Location: login.php");
-        exit();
+            header("Location: login.php");
+            exit();
+        }
     }
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -40,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <head>
     <title>Register</title>
-    <link rel="stylesheet" href="registration.css">
+    <link rel="stylesheet" href="CSS/registration.css">
 
 </head>
 
@@ -66,13 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="file" name="profile_pic" accept="image/*" required>
 
 
-            <label>Role:</label>
-            <select name="role" required>
-                <option value="">--Select Role--</option>
-                <option value="Student">Student</option>
-                <option value="Mentor">Mentor</option>
-                <option value="Advisor">Advisor</option>
-            </select>
+            <label>Faculty Key to Verify:</label>
+            <input type="password" name="fac_key" required>
 
             <button type="submit">Register</button>
             <p>Already have an account? <a href="login.php">Login here</a></p>

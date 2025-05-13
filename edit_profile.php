@@ -9,12 +9,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $Dept = $_POST['Dept'];
+    $Reg_No = $_POST['Reg_No'];
 
     if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['size'] > 0) {
         $imgData = addslashes(file_get_contents($_FILES['profile_pic']['tmp_name']));
-        $updateQuery = "UPDATE USER SET Name='$name', Email='$email', Password='$password', Profile_pic='$imgData' WHERE id='$id'";
+        $updateQuery = "UPDATE USER SET Name='$name', Email='$email', Password='$password', Profile_pic='$imgData',phone = '$phone', address='$address' WHERE id='$id'";
     } else {
-        $updateQuery = "UPDATE USER SET Name='$name', Email='$email', Password='$password' WHERE id='$id'";
+        $updateQuery = "UPDATE USER SET Name='$name', Email='$email', Password='$password',phone = '$phone', address='$address' WHERE id='$id'";
     }
     mysqli_query($conn, $updateQuery);
 
@@ -33,7 +37,7 @@ $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <title>Edit Profile</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="edit_profile.css">
+    <link rel="stylesheet" href="CSS/edit_profile.css">
 </head>
 
 <body>
@@ -75,6 +79,12 @@ $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
                 <label>Password:</label>
                 <input type="text" name="password" value="<?= $row['Password'] ?>" required>
+
+                <label>Phone:</label>
+                <input type="text" name="phone" value="<?= $row['phone'] ?>" required>
+
+                <label>Address:</label>
+                <input type="text" name="address" value="<?= $row['address'] ?>" required>
 
 
                 <label for="profile_pic">Profile Picture:</label>

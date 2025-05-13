@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OAA Portal - All Students</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="show_std_mnt.css">
+    <link rel="stylesheet" href="CSS/show_std_mnt.css">
 </head>
 
 <body>
@@ -68,8 +68,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div class="profile-info">
                             <h2><?= htmlspecialchars($row['Name']) ?></h2>
                             <p><strong>Email:</strong> <?= htmlspecialchars($row['Email']) ?></p>
-                            <p><strong>Phone:</strong> <?= htmlspecialchars($row['contact']) ?></p>
+                            <p><strong>Phone:</strong> <?= htmlspecialchars($row['phone']) ?></p>
                             <p><strong>Address:</strong> <?= htmlspecialchars($row['address']) ?></p>
+                            <p>
+                                <strong>View Grade Sheet:</strong>
+                                <a href="v_student_grade_sheet.php?s_id=<?= $row['ID'] ?>" class="view-button">View</a>
+                            </p>
                         </div>
                     </div>
             <?php

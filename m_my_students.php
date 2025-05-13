@@ -3,11 +3,13 @@ session_start();
 require_once('database.php');
 $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
 
-// if ($role !== 'advisor') { //directly jehetu access kortesi from admin page eita na dileo hoy tao jodi mentor theke access di tahole eita use korbo
-//     header("Location: index.php");
-//     exit;
-// }
+if ($role !== 'mentor') {
+    header("Location: index.php");
+    exit;
+}
 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+}
 
 ?>
 
@@ -47,15 +49,7 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
     <section class="students-section">
         <div class="students-container">
             <?php
-            
-            if ($_SESSION['role'] == 'student') {
-                $result = mysqli_query($conn, "SELECT * FROM USER U INNER JOIN Mentor M ON U.id = M.id AND M.id in (SELECT mentor_id FROM Student S WHERE S.id = '$_SESSION[user_id]')");
-            
-
-            } else if ($_SESSION['role'] == 'advisor' || $_SESSION['role'] == 'mentor') {
-                $result = mysqli_query($conn, "SELECT * FROM USER U INNER JOIN Mentor M ON U.id = M.id");
-            }
-     
+            $result = mysqli_query($conn, "SELECT * FROM USER U INNER JOIN Student S ON U.id = S.id AND S.mentor_id = '$_SESSION[user_id]'");
 
             if (!$result) {
                 die('Error in query: ' . mysqli_error($conn));
@@ -76,12 +70,18 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
                             <p><strong>Email:</strong> <?= htmlspecialchars($row['Email']) ?></p>
                             <p><strong>Phone:</strong> <?= htmlspecialchars($row['phone']) ?></p>
                             <p><strong>Address:</strong> <?= htmlspecialchars($row['address']) ?></p>
+                            <p><?php echo "{$row['id']}";?></p>
+                            <p>
+                                <strong>View Grade Sheet:</strong>
+                                <a href="v_student_grade_sheet.php?s_id=<?= $row['ID'] ?>" class="view-button">View</a>
+                            </p>
+
                         </div>
                     </div>
             <?php
                 }
             } else {
-                echo "<p>No Mentor found. Will assign Soon</p>";
+                echo "<p>No students found.</p>";
             }
             ?>
         </div>

@@ -3,12 +3,11 @@ session_start();
 require_once('database.php');
 $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
 
-// if ($role !== 'advisor') { //directly jehetu access kortesi from admin page eita na dileo hoy tao jodi mentor theke access di tahole eita use korbo
-//     header("Location: index.php");
-//     exit;
-// }
 
 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+}
+  // apatoto lagbena eita
 ?>
 
 <!DOCTYPE html>
@@ -47,15 +46,7 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
     <section class="students-section">
         <div class="students-container">
             <?php
-            
-            if ($_SESSION['role'] == 'student') {
-                $result = mysqli_query($conn, "SELECT * FROM USER U INNER JOIN Mentor M ON U.id = M.id AND M.id in (SELECT mentor_id FROM Student S WHERE S.id = '$_SESSION[user_id]')");
-            
-
-            } else if ($_SESSION['role'] == 'advisor' || $_SESSION['role'] == 'mentor') {
-                $result = mysqli_query($conn, "SELECT * FROM USER U INNER JOIN Mentor M ON U.id = M.id");
-            }
-     
+            $result = mysqli_query($conn, "SELECT * FROM USER U INNER JOIN Advisor A ON U.id = A.id");
 
             if (!$result) {
                 die('Error in query: ' . mysqli_error($conn));
@@ -81,7 +72,7 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
             <?php
                 }
             } else {
-                echo "<p>No Mentor found. Will assign Soon</p>";
+                echo "<p>No students found.</p>";
             }
             ?>
         </div>

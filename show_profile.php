@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>OAA Portal</title>
     <link rel="stylesheet" href="styles.css">
 
-    <link rel="stylesheet" href="show_profile.css">
+    <link rel="stylesheet" href="CSS/show_profile.css">
 </head>
 
 <body>
@@ -67,16 +67,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </nav>
         </div>
     </header>
-    <!-- <div class="container">
 
-    </div> -->
 
     <?php
     $id = $_SESSION['user_id'];
     $result3 = mysqli_query($conn, "SELECT * FROM USER WHERE id='$id'");
     $row3 = mysqli_fetch_array($result3, MYSQLI_ASSOC);
 
-    // Convert image blob to base64
     $profileImage = $row3['Profile_pic'] ? 'data:image/jpeg;base64,' . base64_encode($row3['Profile_pic']) : 'default.jpg';
     ?>
     <section class="profile-section">
@@ -88,7 +85,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <h2><?= htmlspecialchars($row3['Name']) ?></h2>
                 <p><strong>Email:</strong> <?= htmlspecialchars($row3['Email']) ?></p>
                 <p><strong>Password:</strong> <?= htmlspecialchars($row3['Password']) ?></p>
-                <p><strong>I am a  <?= htmlspecialchars($role) ?></p></strong>
+                <p><strong>Phone:</strong> <?= htmlspecialchars($row3['phone']) ?></p>
+                <p><strong>Adress:</strong> <?= htmlspecialchars($row3['address']) ?></p>
+
+
+                <p><strong>I am a <?= htmlspecialchars($role) ?></p></strong>
                 <a class="edit-button" href="edit_profile.php">Edit Profile</a>
             </div>
         </div>

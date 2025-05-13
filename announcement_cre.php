@@ -1,11 +1,7 @@
 <?php
 session_start();
-include 'database.php';
+$role = isset($_SESSION['role']) ? $_SESSION['role'] : null;include 'database.php';
 
-// Simulate advisor login (for testing only)
-// if (!isset($_SESSION['user_id'])) {
-//     $_SESSION['user_id'] = 1;
-// }
 
 $success = "";
 $error = "";
@@ -19,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $target_role = $_POST['target_role'];
     // $adv_id      = $_SESSION['user_id']; // apatoto lagtese na -> view er somoy dekhte hobe eita ki kora jay
 
-    // echo $adv_id;
+    echo $adv_id;
 
     $insert = mysqli_query($conn, "INSERT INTO Announcement (madeby, title, Content, date, target_role,name) VALUES ('$madeby', '$title', '$content', '$date', '$target_role','$name')");
 
@@ -39,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <title>Create Announcement</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="announcement_cre.css">
+    <link rel="stylesheet" href="CSS/announcement_cre.css">
 
 </head>
 <body>
@@ -53,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <li><a href="student_list_all.php">All Student List</a></li>
           <li><a href="mentor_list_all.php ">Mentors</a></li>
           <li><a href="add_drop.php">Add or Drop</a></li>
-          <li><a href="announcement_cre.php">Announcements</a></li>
+          <li><a href="announcement_show.php">Announcements</a></li>
           <?php if (!$role): ?>
             <li><a href="login.php">Login</a></li>
           <?php else: ?>
@@ -88,6 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <option value="">--Select Role--</option>
             <option value="Student">Student</option>
             <option value="Mentor">Mentor</option>
+            <option value="Both">Both</option>
+
         </select>
 
         <button type="submit">Create Announcement</button>

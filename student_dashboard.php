@@ -20,11 +20,23 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
     <nav>
       <ul>
         <li><a href="index.php">Home</a></li>
-        <li><a href="#">My Advisor</a></li>
-        <li><a href="#">Student List</a></li>
-        <li><a href="#">Lets Chat</a></li>
-        <li><a href="#">Resources</a></li>
-        <li><a href="#">Announcements</a></li>
+        <li><a href="announcement_show.php">Announcements</a></li>
+        <li><a href="mentor_list_all.php">My Mentor</a></li>
+        <li><a href="advisors.php">My Advisor</a></li>
+        <li><a href="group_chat.php">Lets Chat</a></li>
+        <li><a href="grade_sheet.php">Grade Sheet</a></li>
+
+        <li><a href="view_resource.php">Resources</a></li>
+
+        <li><a href="request_resource.php">Request Resources</a></li>
+
+
+        <li><a href="show_profile.php">My Profile</a></li>
+        <?php if (!$role): ?>
+          <li><a href="login.php">Login</a></li>
+        <?php else: ?>
+          <li><a href="logout.php">Logout</a></li>
+        <?php endif; ?>
       </ul>
     </nav>
   </div>

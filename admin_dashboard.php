@@ -26,7 +26,11 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
           <li><a href="student_list_all.php">All Student List</a></li>
           <li><a href="mentor_list_all.php ">Mentors</a></li>
           <li><a href="add_drop.php">Add or Drop</a></li>
+          <li><a href="announcement_show.php">Announcements</a></li>
+          
           <li><a href="announcement_cre.php">Create Announcements</a></li>
+          <li><a href="assign_m_s.php">Assign Student</a></li>
+
           <?php if (!$role): ?>
             <li><a href="login.php">Login</a></li>
           <?php else: ?>

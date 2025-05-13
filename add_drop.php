@@ -1,38 +1,65 @@
 <?php
+session_start();
+$role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
 include 'database.php';
+
+if ($role !== 'advisor') {
+    header("Location: index.php");
+    exit;
+}
 
 $message = '';
 
 if (isset($_POST['create_user'])) {
-    $role = $_POST['role'];
+    $role_new = $_POST['role']; // na use korleo hoy
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO USER (Email,Password,Name) VALUES ('$email', '$password','$name')";
-    if (mysqli_query($conn, $sql)) {
-        $userId = mysqli_insert_id($conn);
-        if ($role === "student") {
-            $studentSql = "INSERT INTO Student (ID) VALUES ('$userId')";
-            mysqli_query($conn, $studentSql);
-        } elseif ($role === "mentor") {
-            $mentorSql = "INSERT INTO Mentor (ID) VALUES ('$userId')";
-            mysqli_query($conn, $mentorSql);
-        }
-
-        $message = "<p class='message'>Dear Advisor, User created successfully with role: <strong>$role</strong>!</p>";
-    } else {
-        $message = "<p class='message error'> Error: " . mysqli_error($conn) . "</p>";
-    }
-}
-
-if (isset($_POST['delete_user'])) {
-    $email = $_POST['delete_email'];
 
     $checkSql = "SELECT * FROM USER WHERE Email = '$email'";
     $result = mysqli_query($conn, $checkSql);
 
     if (mysqli_num_rows($result) > 0) {
+        $message = "<p class='message error'>Email already exists. Please use a different email.</p>";
+        
+    }else{
+        $sql = "INSERT INTO USER (Email,Password,Name) VALUES ('$email', '$password','$name')";
+        if (mysqli_query($conn, $sql)) {
+            $userId = mysqli_insert_id($conn);
+            if ($role_new === "student") {
+                $studentSql = "INSERT INTO Student (ID) VALUES ('$userId')";
+                mysqli_query($conn, $studentSql);
+            } elseif ($role_new === "mentor") {
+                $mentorSql = "INSERT INTO Mentor (ID) VALUES ('$userId')";
+                mysqli_query($conn, $mentorSql);
+            }
+    
+            $message = "<p class='message'>Dear Advisor, User created successfully with role: <strong>$role_new</strong>!</p>";
+        } else {
+            $message = "<p class='message error'> Error: " . mysqli_error($conn) . "</p>";
+        }
+    }
+
+}
+
+if (isset($_POST['delete_user'])) {
+    $email = $_POST['delete_email'];
+    
+    $checkSql = "SELECT * FROM USER WHERE Email = '$email'";
+    $result = mysqli_query($conn, $checkSql);
+    
+
+    
+    if (mysqli_num_rows($result) > 0) {
+
+        $row = mysqli_fetch_assoc($result);
+        $userId = $row['ID'];
+
+
+        mysqli_query($conn, "DELETE FROM Mentor WHERE ID = $userId");
+        mysqli_query($conn, "DELETE FROM Student WHERE ID = $userId");
+
         $sql = "DELETE FROM USER WHERE Email = '$email'";
         if (mysqli_query($conn, $sql)) {
             $message = "<p class='message'>User deleted successfully!</p>";
@@ -55,7 +82,7 @@ mysqli_close($conn);
     <title>Admin - Add or Drop User</title>
     <link rel="stylesheet" href="styles.css">
 
-    <link rel="stylesheet" href="add_drop.css">
+    <link rel="stylesheet" href="CSS/add_drop.css">
 
 </head>
 
@@ -69,11 +96,14 @@ mysqli_close($conn);
                     <li><a href="index.php">Home</a></li>
                     <li><a href="student_list_all.php">All Student List</a></li>
                     <li><a href="mentor_list_all.php">Mentors</a></li>
+
+
                     <li><a href="add_drop.php">Add or Drop</a></li>
                     <li><a href="announcement_cre.php">Create Announcements</a></li>
+
                     <?php if (!$role): ?>
                         <li><a href="login.php">Login</a></li>
-                    <?php else: ?>
+                    <?php else: ?> 
                         <li><a href="logout.php">Logout</a></li>
                     <?php endif; ?>
                     <li><a href="show_profile.php">My Profile</a></li>
