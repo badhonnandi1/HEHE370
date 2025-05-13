@@ -66,6 +66,7 @@ select {
 
 .message-block {
     text-align: center;
+    padding: 20px;
 }
 
 .message {
