@@ -25,8 +25,7 @@ This approach improves communication, increases efficiency, and provides easy ac
 - PHP  
 - MySQL  
 
-> ⚠️ More updates and features will be added gradually.
+> More updates and features will be added gradually.
 
----
 
-Feel free to fork this repository or suggest improvements. Contributions are welcome!
+Contributions are welcome!
