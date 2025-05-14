@@ -11,13 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $result = mysqli_query($conn, "SELECT * FROM USER WHERE Email = '$email' AND Password = '$password'");
     
-    // echo mysqli_num_rows($result) === 1;
 
     if (mysqli_num_rows($result) === 1) {
-        $user = mysqli_fetch_assoc($result); // associative array niye astese eita key: value pair dictionary er moto
+        $user = mysqli_fetch_assoc($result); 
         $userId = $user['ID'];
 
-        $role = '';
+        $role = ''; 
         if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM Student WHERE ID = $userId")) === 1) {
             $role = 'student';
         } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM Mentor WHERE ID = $userId")) === 1) {

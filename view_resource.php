@@ -6,14 +6,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Simulate student login (for testing)
-if (!isset($_SESSION['user_id'])) {
-    $_SESSION['user_id'] = 1001; // Replace with actual student ID
-}
-
 $student_id = $_SESSION['user_id'];
 
-// Get mentor ID assigned to the student
 $mentor_query = mysqli_query($conn, "SELECT mentor_id FROM Student WHERE ID = '$student_id'");
 $mentor_row = mysqli_fetch_assoc($mentor_query);
 $mentor_id = $mentor_row ? $mentor_row['mentor_id'] : null;
@@ -48,12 +42,12 @@ if ($mentor_id) {
 
     <header>
         <div class="container">
-        <h1>Student Dashboard</h1>
+        <h1>OFFICE OF ACADEMIC ACTIVITIES</h1>
         <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="advisors.php">My Advisor</a></li>
-                    <li><a href="#">Lets Chat</a></li>
+                    <li><a href="group_chat.php">Lets Chat</a></li>
                     <li><a href="grade_sheet.php">Grade Sheet</a></li>
 
                     <li><a href="view_resource.php">Resources</a></li>

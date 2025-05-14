@@ -27,7 +27,7 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
           <li><a href="mentor_list_all.php ">Mentors</a></li>
           <li><a href="add_drop.php">Add or Drop</a></li>
           <li><a href="announcement_show.php">Announcements</a></li>
-          
+
           <li><a href="announcement_cre.php">Create Announcements</a></li>
           <li><a href="assign_m_s.php">Assign Student</a></li>
 
@@ -48,23 +48,22 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
       <h2>Welcome, Mr Advisor!</h2>
       <div class="cards">
         <div class="card">
-          <h3>Advisor Info</h3>
-          <p>Find and contact your assigned advisor.</p>
+          <h3>Post Announcements</h3>
+          <p>Create and publish announcements.</p>
         </div>
         <div class="card">
-          <h3>Mentor Support</h3>
-          <p>Connect with your mentors for guidance.</p>
+          <h3>Student List</h3>
+          <p>View and manage all freshers students.</p>
         </div>
         <div class="card">
-          <h3>Resources</h3>
-          <p>Access study materials and e-books.</p>
+          <h3>Mentor List</h3>
+          <p>Access the full list of student mentors.</p>
         </div>
         <div class="card">
-          <h3>Announcements</h3>
-          <p>Stay updated with latest university news.</p>
+          <h3>Assign Students</h3>
+          <p>Assign students to mentors or faculty advisors.</p>
         </div>
-  
-        
+
       </div>
     </div>
   </section>

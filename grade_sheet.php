@@ -23,8 +23,8 @@ $result = mysqli_query($conn, $sql);
 <body>
     <header>
         <div class="container">
-            <h1>Student Dashboard</h1>
-            <nav>
+        <h1>OFFICE OF ACADEMIC ACTIVITIES</h1>
+        <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="#">My Advisor</a></li>

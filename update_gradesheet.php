@@ -12,8 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $quiz_marks = $_POST['quiz_marks'];
     $attendance = $_POST['attendance'];
 
-    $checkQuery = "SELECT * FROM Grade_sheet WHERE s_id='$id' AND course_name='$course_name'";
-    $checkResult = mysqli_query($conn, $checkQuery);
+    $sql = "SELECT * FROM Grade_sheet WHERE s_id='$id' AND course_name='$course_name'";
+    $checkResult = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($checkResult) > 0) {
         $updateQuery = "UPDATE Grade_sheet SET final_marks='$final_marks', mid_marks='$mid_marks',  quiz_marks='$quiz_marks', Attendance='$attendance' WHERE s_id='$id' AND course_name='$course_name'";
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="#">Announcements</a></li>
+                    <li><a href="announcement_show.php">Announcements</a></li>
                     <li><a href="resources.php">Resources</a></li>
                     <?php if ($role === 'advisor'): ?>
                         <li><a href="admin_dashboard.php">Advisor Dashboard</a></li>
@@ -84,23 +84,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <option value="PHY111">PHY111</option>
                 </select>
 
-                <!-- Final Marks -->
                 <label for="final_marks">Final Marks:</label>
                 <input type="number" name="final_marks" required>
 
-                <!-- Mid Marks -->
                 <label for="mid_marks">Mid Marks:</label>
                 <input type="number" name="mid_marks" id="mid_marks" required>
 
-                <!-- Quiz Marks -->
                 <label for="quiz_marks">Quiz Marks:</label>
                 <input type="number" name="quiz_marks" required>
 
-                <!-- Attendance -->
                 <label for="attendance">Attendance:</label>
                 <input type="number" name="attendance" required>
 
-                <!-- Submit Button -->
                 <button class="save-button" type="submit">Save</button>
             </form>
         </div>

@@ -47,8 +47,9 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
 
     <section class="hero">
         <div class="container">
-            <h2>Welcome to Your Academic Journey</h2>
-            <p>Manage your grades, connect with mentors, request resources, and stay updated with announcements!</p>
+            <h2>Welcome to Brac University</h2>
+            <p>Office of Academic Advising (OAA) is here to create a bridge between students’ college life and their life ahead in BRAC University. 
+            </p>
         </div>
     </section>
 

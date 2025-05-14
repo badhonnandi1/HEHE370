@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $content     = $_POST['content'];
     $date        = date("Y-m-d");
     $target_role = $_POST['target_role'];
-    // $adv_id      = $_SESSION['user_id']; // apatoto lagtese na -> view er somoy dekhte hobe eita ki kora jay
+    // $adv_id      = $_SESSION['user_id']; // apatoto lagtese na -> view er somoy jodi lage use korbani
 
     echo $adv_id;
 
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 
-<!-- INSERT INTO Announcement (madeby, title, Content, date, target_role, adv_id,name) VALUES (3470, 'Hello World', 'Hopeful', '2024-01-01', 'student', 3470,'Badhonnandi') -->
+<!-- INSERT INTO Announcement (madeby, title, Content, date, target_role, adv_id,name) VALUES (3470, 'Hello World', 'Hopeful', '2024-01-01', 'student', 3470,'Badhonnandi') ektu test --> 
 
 <!DOCTYPE html>
 <html>

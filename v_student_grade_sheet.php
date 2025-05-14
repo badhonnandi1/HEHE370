@@ -32,8 +32,8 @@ $student_info = mysqli_fetch_assoc($student_result);
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="m_my_students.php">My Students</a></li>
-                    <li><a href="#">Lets Chat</a></li>
-                    <li><a href="/resources.php">Resources</a></li>
+                    <li><a href="group_chat.php">Lets Chat</a></li>
+                    <li><a href="resources.php">Resources</a></li>
                     <li><a href="announcement_show.php">Announcements</a></li>
                     <?php if (!$role): ?>
                         <li><a href="login.php">Login</a></li>

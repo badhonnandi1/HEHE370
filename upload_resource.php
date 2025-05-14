@@ -59,18 +59,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <title>Upload Resource</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="upload_resource.css">
+    <link rel="stylesheet" href="update_resources.css">
 </head>
 <body>
 
 <header>
     <div class="container">
-        <h1>Upload New Resource</h1>
+    <h1>OFFICE OF ACADEMIC ACTIVITIES</h1>
+
         <nav>
             <ul>
-                <li><a href="mentor_dashboard.php">Dashboard</a></li>
-                <li><a href="view_requests.php">View Requests</a></li>
-                <li><a href="logout.php">Logout</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="m_my_students.php">All Student List</a></li>
+                <li><a href="mentor_list_all.php">Mentors</a></li>
+                <li><a href="add_drop.php">Add or Drop</a></li>
+                <li><a href="announcement_show.php">Announcements</a></li>
+                <?php if (!isset($_SESSION['role'])): ?>
+                    <li><a href="login.php">Login</a></li>
+                <?php else: ?>
+                    <li><a href="logout.php">Logout</a></li>
+                <?php endif; ?>
+                <li><a href="show_profile.php">My Profile</a></li>
             </ul>
         </nav>
     </div>

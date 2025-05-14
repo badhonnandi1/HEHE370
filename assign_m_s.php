@@ -3,8 +3,9 @@ session_start();
 $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;include 'database.php'; 
 
 if ($_SESSION['role'] !== 'advisor') {
-    echo "Access Denied.";
+    header("Location: index.php");
     exit;
+
 }
 
 $mentors_result = mysqli_query($conn, "SELECT u.ID, u.name  FROM USER u INNER JOIN Mentor m ON u.ID = m.ID");

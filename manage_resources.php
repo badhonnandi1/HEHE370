@@ -43,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-// UPDATE RESOURCE
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update') {
     $res_id = (int)$_POST['res_id'];
     $title = trim($_POST['title']);
@@ -90,7 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-// FETCH RESOURCES
 $res_stmt = $conn->prepare("SELECT r.res_id, r.title FROM Resources r 
                             JOIN m_update_res m ON r.res_id = m.res_id 
                             WHERE m.m_id = ?");
@@ -104,19 +102,33 @@ $resources = $res_stmt->get_result();
 <head>
     <title>Manage Resources</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="update_resources.css">
 </head>
 <body>
-
 <header>
-    <div class="container">
-        <h1>Manage Resources</h1>
-        <nav>
-            <ul>
-                <li><a href="mentor_dashboard.php">Dashboard</a></li>
-                <li><a href="logout.php">Logout</a></li>
-            </ul>
-        </nav>
-    </div>
+  <div class="container">
+    <h1>OFFICE OF ACADEMIC ACTIVITIES</h1>
+    <nav>
+      <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="m_my_students.php">My Students</a></li>
+        <li><a href="group_chat.php">Lets Chat</a></li>
+        <li><a href="manage_resources.php">Manage Requests</a></li>
+        <li><a href="upload_resource.php">Upload Requests</a></li>
+
+        <li><a href="announcement_cre.php">Give Announcements</a></li>
+        <li><a href="announcement_show.php">Announcements</a></li>
+        <li><a href="show_profile.php">My Profile</a></li>
+        <?php if (!$role): ?>
+          <li><a href="login.php">Login</a></li>
+        <?php else: ?>
+          <li><a href="logout.php">Logout</a></li>
+        <?php endif; ?>
+
+
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <div class="form-box">

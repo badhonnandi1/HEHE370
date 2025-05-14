@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('database.php');
+include 'database.php';
 
 $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
 $id = $_SESSION['user_id'];

@@ -56,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['message'])) {
     }
 }
 
-// Fetch group chat messages
 $query = "
     SELECT c.message, c.time_sent, u.ID AS sender_id, u.Name AS sender_name,
            CASE 
@@ -86,8 +85,8 @@ $messages = $stmt->get_result();
 
 <header>
   <div class="container">
-    <h1>Student Dashboard</h1>
-    <nav>
+  <h1>OFFICE OF ACADEMIC ACTIVITIES</h1>
+  <nav>
       <ul>
         <li><a href="index.php">Home</a></li>
         <li><a href="advisors.php">My Advisor</a></li>

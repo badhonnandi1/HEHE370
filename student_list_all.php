@@ -8,8 +8,7 @@ if ($role !== 'advisor') {
     exit;
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-}
+
 
 ?>
 

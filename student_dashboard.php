@@ -16,7 +16,7 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
 
 <header>
   <div class="container">
-    <h1>Student Dashboard</h1>
+    <h1>OFFICE OF ACADEMIC ACTIVITIES</h1>
     <nav>
       <ul>
         <li><a href="index.php">Home</a></li>
@@ -56,11 +56,11 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
       </div>
       <div class="card">
         <h3>Resources</h3>
-        <p>Access study materials and e-books.</p>
+        <p>Access study materials.</p>
       </div>
       <div class="card">
         <h3>Announcements</h3>
-        <p>Stay updated with latest university news.</p>
+        <p>Stay updated with latest announcements.</p>
       </div>
     </div>
   </div>

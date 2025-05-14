@@ -2,28 +2,6 @@
 session_start();
 require_once('database.php');
 $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
-
-// $id = $_SESSION['user_id'];
-// $result3 = mysqli_query($conn, "SELECT * FROM USER WHERE id='$id'");
-// $row3 = mysqli_fetch_array($result3);  
-// echo $row3['Name'];
-// echo $row3['Email'];
-// echo $row3['Password'];
-// echo $row3['Profile_pic'];
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    echo 'H';
-
-    // while ($row3 = mysql_fetch_array($result3)) {
-    //     $fname = $row3['Name'];
-    //     $lname = $row3['Email'];
-    //     $address = $row3['Password'];
-    //     $contact = $row3['contact'];
-    //     $picture = $row3['Profile_pic'];
-
-    // }    
-}
-
 ?>
 
 

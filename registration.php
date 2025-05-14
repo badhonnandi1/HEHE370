@@ -11,9 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $profilePic = $_FILES['profile_pic']['tmp_name'];
     $profilePicContent = addslashes(file_get_contents($profilePic));
 
-    $fac_check = mysqli_query($conn, "SELECT `key` FROM Faculty WHERE `key` = '$fac_key'");
+    $fac_check = mysqli_query($conn, "SELECT 'key' FROM Faculty WHERE 'key' = '$fac_key'");
     if (mysqli_num_rows($fac_check) === 0) {
-        $error = "Invalid faculty key. Please enter a valid key.";
+        $error = "Invalid faculty key. Please enter a valid One.";
     } else {
         $check = mysqli_query($conn, "SELECT id FROM USER WHERE email = '$email'");
         if (mysqli_num_rows($check) > 0) {
